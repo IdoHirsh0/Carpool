@@ -9,13 +9,13 @@ class SecretCodeForm extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final _secretCodeProvider = Provider.of<SecretCodeProvider>(context);
-    String _secretCode;
 
     return Padding(
       padding: EdgeInsets.all(10),
       child: Form(
         key: null,
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             TextFormField(
               obscureText: !_secretCodeProvider.showSecretCode,
@@ -35,19 +35,16 @@ class SecretCodeForm extends StatelessWidget {
               ),
               // Updates the _secretCode variable on every change
               onChanged: (secretCode) {
-                _secretCode = secretCode;
+                _secretCodeProvider.changeSecretCode(secretCode);
               },
               // Checks the users
               onFieldSubmitted: (_) async {
-                await _secretCodeProvider.checkSecretCode(_secretCode);
+                await _secretCodeProvider.checkSecretCode();
               },
             ),
-            SizedBox(height: 100),
-            ElevatedButton(
-              onPressed: () async {
-                await _secretCodeProvider.checkSecretCode(_secretCode);
-              },
-              child: Text('Confirm'),
+            FlatButton(
+              onPressed: () {},
+              child: Text('Forgot your code?'),
             ),
           ],
         ),

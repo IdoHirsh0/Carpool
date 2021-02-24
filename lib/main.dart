@@ -29,6 +29,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         visualDensity: VisualDensity.adaptivePlatformDensity,
         primarySwatch: Colors.blue,
+        // TODO: Add theme
       ),
       home: SecretCodeScreen(),
     );

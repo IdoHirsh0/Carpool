@@ -2,28 +2,37 @@ import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class SecretCodeProvider with ChangeNotifier {
+  String _secretCode;
   String _error;
   bool _isValid;
   bool _showSecretcode = false;
 
-  // Getters
+  //* Getters
+  String get secretCode => _secretCode;
   String get error => _error;
   bool get isValid => _isValid;
   bool get showSecretCode => _showSecretcode;
+
+  //* Setters
+  void changeSecretCode(secretCode) {
+    _secretCode = secretCode;
+  }
 
   void changeShowSecretCode() {
     _showSecretcode = !_showSecretcode;
     notifyListeners();
   }
 
+  //* Other methods
   // Checks the users secret code
-  Future<void> checkSecretCode(String secretCode) async {
-    final String firebaseSecretCode = await getFirestoreSecretCode(secretCode);
+  Future<void> checkSecretCode() async {
+    final String firebaseSecretCode = await getFirestoreSecretCode(_secretCode);
 
     // If the secret code is valid
-    if (firebaseSecretCode == secretCode) {
+    if (firebaseSecretCode == _secretCode) {
       _error = null;
       _isValid = true;
+      // TODO: Add navigation to next page
     }
     // If the secret code is not valid
     else {

@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 
-class AppLogo extends StatelessWidget {
-  const AppLogo({Key key}) : super(key: key);
+class AppPictureAndName extends StatelessWidget {
+  const AppPictureAndName({Key key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    final deviceSize = MediaQuery.of(context).size;
+    final _deviceSize = MediaQuery.of(context).size;
 
     return Column(
       children: [
@@ -15,6 +15,7 @@ class AppLogo extends StatelessWidget {
             Container(
               height: 250,
               width: 300,
+              //TODO: Add the app's picture
               child: Placeholder(),
             ),
           ],
@@ -29,7 +30,7 @@ class AppLogo extends StatelessWidget {
                   child: Text(
                     'Welcome to APP NAME',
                     style: TextStyle(
-                      fontSize: deviceSize.height / 25,
+                      fontSize: _deviceSize.height / 25,
                       fontWeight: FontWeight.bold,
                       color: Colors.black,
                     ),
