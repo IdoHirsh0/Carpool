@@ -1,5 +1,7 @@
-import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/material.dart';
+
+import '../../authentication/screens/auth_screen.dart';
 
 class SecretCodeProvider with ChangeNotifier {
   String _secretCode;
@@ -16,6 +18,7 @@ class SecretCodeProvider with ChangeNotifier {
   //* Setters
   void changeSecretCode(secretCode) {
     _secretCode = secretCode;
+    notifyListeners();
   }
 
   void changeShowSecretCode() {
@@ -32,11 +35,10 @@ class SecretCodeProvider with ChangeNotifier {
     if (firebaseSecretCode == _secretCode) {
       _error = null;
       _isValid = true;
-      // TODO: Add navigation to next page
     }
     // If the secret code is not valid
     else {
-      _error = 'This secret code is not valid';
+      _error = 'Invalid code';
       _isValid = false;
     }
     notifyListeners();
@@ -54,11 +56,29 @@ class SecretCodeProvider with ChangeNotifier {
           .where('secretCode', isEqualTo: secretCode)
           .get();
       String mySecretCode = data.docs.first['secretCode'];
+      print('Succeded to get the secret code from firestore: "$mySecretCode"');
       return mySecretCode;
     }
     // If failed to fetch the secret codes
     catch (error) {
+      print(
+          'Failed to get the secret code from firestore with this error: "$error"');
       return null;
     }
+  }
+
+  void navigateToAuthScreen(BuildContext context) {
+    if (_isValid) {
+      Navigator.of(context).pushNamed(
+        AuthScreen.routeName,
+        arguments: {
+          'secretCode': _secretCode,
+        },
+      );
+      print('Succeded naviagtion to authentication screen');
+    } else {
+      print('Failed navigating to authentication screen.');
+    }
+    notifyListeners();
   }
 }

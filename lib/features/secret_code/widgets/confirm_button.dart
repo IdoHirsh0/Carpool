@@ -8,9 +8,9 @@ class ConfirmButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final _secretCodeProvider =
+    final secretCodeProvider =
         Provider.of<SecretCodeProvider>(context, listen: false);
-    final _deviceSize = MediaQuery.of(context).size;
+    final deviceSize = MediaQuery.of(context).size;
     final theme = Theme.of(context);
 
     return Padding(
@@ -19,24 +19,31 @@ class ConfirmButton extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Container(
-            height: 1.4 * (_deviceSize.height / 20),
-            width: 5 * (_deviceSize.width / 10),
-            margin: EdgeInsets.only(bottom: 20),
+            height: 1.4 * (deviceSize.height / 20),
+            width: 5 * (deviceSize.width / 10),
             child: RaisedButton(
               elevation: 5.0,
               color: theme.primaryColor,
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(30),
               ),
-              onPressed: () {
-                _secretCodeProvider.checkSecretCode();
+              onPressed: () async {
+                await secretCodeProvider.checkSecretCode();
+                secretCodeProvider.isValid
+                    ? secretCodeProvider.navigateToAuthScreen(context)
+                    : Scaffold.of(context).showSnackBar(
+                        SnackBar(
+                          content: Text(secretCodeProvider.error),
+                          backgroundColor: Theme.of(context).errorColor,
+                        ),
+                      );
               },
               child: Text(
                 "Confirm",
                 style: TextStyle(
                   color: theme.buttonColor,
                   letterSpacing: 1.5,
-                  fontSize: _deviceSize.height / 40,
+                  fontSize: deviceSize.height / 40,
                 ),
               ),
             ),

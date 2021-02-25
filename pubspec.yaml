@@ -11,7 +11,6 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  cupertino_icons: ^1.0.0
   # Firebase
   firebase_core: ^0.7.0
   firebase_auth: ^0.20.1
@@ -19,6 +18,10 @@ dependencies:
   google_sign_in: ^4.5.9
   # Provider
   provider: ^4.3.3
+  # Icons
+  cupertino_icons: ^1.0.0
+  sign_button: ^1.0.2
+  flutter_signin_button: ^1.1.0
 
 dev_dependencies:
   flutter_test:

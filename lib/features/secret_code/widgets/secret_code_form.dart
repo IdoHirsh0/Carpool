@@ -8,7 +8,7 @@ class SecretCodeForm extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final _secretCodeProvider = Provider.of<SecretCodeProvider>(context);
+    final secretCodeProvider = Provider.of<SecretCodeProvider>(context);
 
     return Padding(
       padding: EdgeInsets.all(10),
@@ -18,30 +18,41 @@ class SecretCodeForm extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             TextFormField(
-              obscureText: !_secretCodeProvider.showSecretCode,
+              obscureText: !secretCodeProvider.showSecretCode,
               decoration: InputDecoration(
                 labelText: 'Enter your secret code',
-                errorText: _secretCodeProvider.error,
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(15),
+                ),
                 suffixIcon: GestureDetector(
                   onTap: () {
-                    _secretCodeProvider.changeShowSecretCode();
+                    secretCodeProvider.changeShowSecretCode();
                   },
                   child: Icon(
-                    _secretCodeProvider.showSecretCode
+                    secretCodeProvider.showSecretCode
                         ? Icons.visibility
                         : Icons.visibility_off,
                   ),
                 ),
               ),
-              // Updates the _secretCode variable on every change
+              // Updates the secretCode variable on every change
               onChanged: (secretCode) {
-                _secretCodeProvider.changeSecretCode(secretCode);
+                secretCodeProvider.changeSecretCode(secretCode);
               },
               // Checks the users
               onFieldSubmitted: (_) async {
-                await _secretCodeProvider.checkSecretCode();
+                await secretCodeProvider.checkSecretCode();
+                secretCodeProvider.isValid
+                    ? secretCodeProvider.navigateToAuthScreen(context)
+                    : Scaffold.of(context).showSnackBar(
+                        SnackBar(
+                          content: Text(secretCodeProvider.error),
+                          backgroundColor: Theme.of(context).errorColor,
+                        ),
+                      );
               },
             ),
+            // This flat button is just for the UI
             FlatButton(
               onPressed: () {},
               child: Text('Forgot your code?'),

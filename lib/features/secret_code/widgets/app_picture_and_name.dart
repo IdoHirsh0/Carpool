@@ -5,7 +5,7 @@ class AppPictureAndName extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final _deviceSize = MediaQuery.of(context).size;
+    final deviceSize = MediaQuery.of(context).size;
 
     return Column(
       children: [
@@ -30,7 +30,7 @@ class AppPictureAndName extends StatelessWidget {
                   child: Text(
                     'Welcome to APP NAME',
                     style: TextStyle(
-                      fontSize: _deviceSize.height / 25,
+                      fontSize: deviceSize.height / 25,
                       fontWeight: FontWeight.bold,
                       color: Colors.black,
                     ),
