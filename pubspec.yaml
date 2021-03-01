@@ -18,6 +18,8 @@ dependencies:
   google_sign_in: ^4.5.9
   # Provider
   provider: ^4.3.3
+  hooks_riverpod: ^0.12.4
+  flutter_hooks: ^0.15.0
   # Icons
   cupertino_icons: ^1.0.0
   sign_button: ^1.0.2

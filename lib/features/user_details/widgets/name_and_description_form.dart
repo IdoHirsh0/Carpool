@@ -49,7 +49,7 @@ class NameAndDescriptionForm extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.all(15),
             child: TextFormField(
-              maxLength: 50,
+              maxLength: 75,
               maxLines: 3,
               textInputAction: TextInputAction.done,
               decoration: InputDecoration(

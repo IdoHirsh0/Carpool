@@ -1,6 +1,7 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+// import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import 'features/authentication/providers/auth_provider.dart';
 import 'features/authentication/screens/auth_screen.dart';
@@ -9,6 +10,14 @@ import 'features/secret_code/providers/secret_code_provider.dart';
 import 'features/secret_code/screens/secret_code_screen.dart';
 import 'features/user_details/providers/user_details_provider.dart';
 import 'features/user_details/screens/name_and_description_screen.dart';
+
+// void main() async {
+//   WidgetsFlutterBinding.ensureInitialized();
+//   await Firebase.initializeApp();
+//   runApp(
+//     ProviderScope(child: MyApp()),
+//   );
+// }
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -40,6 +49,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         visualDensity: VisualDensity.adaptivePlatformDensity,
         primarySwatch: Colors.blue,
+        accentColor: Colors.deepPurple,
         // TODO: Add theme
       ),
       home: SecretCodeScreen(),

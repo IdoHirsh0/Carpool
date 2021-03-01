@@ -1,17 +1,19 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
-
-import '../providers/user_details_provider.dart';
 
 class ConfirmButton extends StatelessWidget {
-  const ConfirmButton({Key key}) : super(key: key);
+  ConfirmButton({
+    Key key,
+    @required this.child,
+    @required this.onPressed,
+  }) : super(key: key);
+
+  final String child;
+  final Function onPressed;
 
   @override
   Widget build(BuildContext context) {
     final deviceSize = MediaQuery.of(context).size;
     final theme = Theme.of(context);
-
-    final userDetailsProvider = Provider.of<UserDetailsProvider>(context);
 
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
@@ -25,11 +27,9 @@ class ConfirmButton extends StatelessWidget {
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(30),
             ),
-            onPressed: () {
-              userDetailsProvider.navigateToRouteScreen(context);
-            },
+            onPressed: onPressed,
             child: Text(
-              "Confirm",
+              child,
               style: TextStyle(
                 color: theme.buttonColor,
                 letterSpacing: 1.5,

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
-import '../widgets/confirm_button.dart';
+import '../providers/user_details_provider.dart';
+import '../../../core/widgets/confirm_button.dart';
 import '../widgets/name_and_description_form.dart';
 
 class NameAndDescriptionScreen extends StatelessWidget {
@@ -10,6 +12,9 @@ class NameAndDescriptionScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final userDetailsProvider =
+        Provider.of<UserDetailsProvider>(context, listen: false);
+
     return Scaffold(
       body: Center(
         child: SingleChildScrollView(
@@ -18,7 +23,12 @@ class NameAndDescriptionScreen extends StatelessWidget {
             children: [
               NameAndDescriptionForm(),
               SizedBox(height: 50),
-              ConfirmButton(),
+              ConfirmButton(
+                child: 'Confirm',
+                onPressed: () {
+                  userDetailsProvider.navigateToRouteScreen(context);
+                },
+              ),
             ],
           ),
         ),

@@ -15,7 +15,7 @@ class RoutePickScreen extends StatelessWidget {
 
     return Scaffold(
       body: Center(
-        child: Text(appUser.name),
+        child: Text(appUser.description),
       ),
     );
   }
