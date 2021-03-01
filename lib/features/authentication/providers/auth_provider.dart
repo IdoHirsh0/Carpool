@@ -5,7 +5,7 @@ import 'package:google_sign_in/google_sign_in.dart';
 import '../../../core/models/app_user.dart';
 import '../../user_details/screens/name_and_description_screen.dart';
 
-class AuthProvider with ChangeNotifier {
+class AuthenticationProvider with ChangeNotifier {
   final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
   final GoogleSignIn _googleSignIn = GoogleSignIn();
 

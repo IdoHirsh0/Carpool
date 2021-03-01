@@ -1,14 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-import '../providers/secret_code_provider.dart';
+// Providers import
+import '../../../core/constants/providers.dart';
 
-class SecretCodeForm extends StatelessWidget {
+class SecretCodeForm extends HookWidget {
   SecretCodeForm({Key key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    final secretCodeProvider = Provider.of<SecretCodeProvider>(context);
+    final secretCodeProvider = useProvider(globalSecretCodeProvider);
 
     return Padding(
       padding: EdgeInsets.all(10),
@@ -48,6 +50,7 @@ class SecretCodeForm extends StatelessWidget {
                         SnackBar(
                           content: Text(secretCodeProvider.error),
                           backgroundColor: Theme.of(context).errorColor,
+                          duration: Duration(seconds: 2),
                         ),
                       );
               },

@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 
+// Providers import
+import '../../../core/constants/providers.dart';
 import '../../../core/models/app_user.dart';
-import '../providers/user_details_provider.dart';
 
-class NameAndDescriptionForm extends StatelessWidget {
+class NameAndDescriptionForm extends HookWidget {
   const NameAndDescriptionForm({Key key}) : super(key: key);
 
   @override
@@ -13,7 +15,7 @@ class NameAndDescriptionForm extends StatelessWidget {
         ModalRoute.of(context).settings.arguments;
     final AppUser appUser = aruguments['appUser'];
 
-    final userDetailsProvider = Provider.of<UserDetailsProvider>(context);
+    final userDetailsProvider = useProvider(globalUserDetailsProvider);
 
     // Get the app user data to the provider
     userDetailsProvider.changeAppUser(appUser);

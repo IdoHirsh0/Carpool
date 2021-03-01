@@ -1,19 +1,20 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-import '../providers/user_details_provider.dart';
+// Providers import
+import '../../../core/constants/providers.dart';
 import '../../../core/widgets/confirm_button.dart';
 import '../widgets/name_and_description_form.dart';
 
-class NameAndDescriptionScreen extends StatelessWidget {
+class NameAndDescriptionScreen extends HookWidget {
   const NameAndDescriptionScreen({Key key}) : super(key: key);
 
   static const routeName = '/name-and-description-screen';
 
   @override
   Widget build(BuildContext context) {
-    final userDetailsProvider =
-        Provider.of<UserDetailsProvider>(context, listen: false);
+    final userDetailsProvider = useProvider(globalUserDetailsProvider);
 
     return Scaffold(
       body: Center(

@@ -1,17 +1,20 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
+
+// Providers import
+import '../../../core/constants/providers.dart';
 
 import '../../../core/widgets/confirm_button.dart';
-import '../providers/secret_code_provider.dart';
 import '../widgets/app_picture_and_name.dart';
 import '../widgets/secret_code_form.dart';
 
-class SecretCodeScreen extends StatelessWidget {
+class SecretCodeScreen extends HookWidget {
   const SecretCodeScreen({Key key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    final secretCodeProvider = Provider.of<SecretCodeProvider>(context);
+    final secretCodeProvider = useProvider(globalSecretCodeProvider);
 
     return Scaffold(
       body: Builder(
@@ -32,6 +35,7 @@ class SecretCodeScreen extends StatelessWidget {
                             SnackBar(
                               content: Text(secretCodeProvider.error),
                               backgroundColor: Theme.of(context).errorColor,
+                              duration: Duration(seconds: 2),
                             ),
                           );
                   },
