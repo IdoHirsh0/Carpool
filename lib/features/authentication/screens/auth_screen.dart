@@ -4,7 +4,7 @@ import 'package:sign_button/sign_button.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 // Providers import
-import '../../../core/constants/providers.dart';
+import '../../../core/providers/providers.dart';
 
 class AuthScreen extends HookWidget {
   const AuthScreen({Key key}) : super(key: key);

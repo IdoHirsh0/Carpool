@@ -3,7 +3,7 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 // Providers import
-import '../../../core/constants/providers.dart';
+import '../../../core/providers/providers.dart';
 
 class SecretCodeForm extends HookWidget {
   SecretCodeForm({Key key}) : super(key: key);
