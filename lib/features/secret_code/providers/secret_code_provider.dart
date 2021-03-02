@@ -6,13 +6,15 @@ import '../../authentication/screens/auth_screen.dart';
 class SecretCodeProvider with ChangeNotifier {
   String _secretCode;
   String _error;
-  bool _isValid;
+  bool _isValid = false;
+  bool _isLoading = false;
   bool _showSecretcode = false;
 
   //* Getters
   String get secretCode => _secretCode;
   String get error => _error;
   bool get isValid => _isValid;
+  bool get isLoading => _isLoading;
   bool get showSecretCode => _showSecretcode;
 
   //* Setters
@@ -29,7 +31,11 @@ class SecretCodeProvider with ChangeNotifier {
   //* Other methods
   // Checks the users secret code
   Future<void> checkSecretCode() async {
+    _isLoading = true;
+    notifyListeners();
     final String firebaseSecretCode = await getFirestoreSecretCode(_secretCode);
+    _isLoading = false;
+    notifyListeners();
 
     // If the secret code is valid
     if (firebaseSecretCode == _secretCode) {

@@ -8,10 +8,6 @@ import '../screens/route_pick_screen.dart';
 class UserDetailsProvider with ChangeNotifier {
   final geoLocatorService = GeoLocatorService();
 
-  UserDetailsProvider() {
-    setCurrentLocation();
-  }
-
   //* Variables
   String _name;
   String _nameError;
@@ -21,7 +17,8 @@ class UserDetailsProvider with ChangeNotifier {
   String _homeAddress;
   String _destinationAddress;
 
-  bool _isValid = false;
+  bool _isNameValid = false;
+  bool _isDescValid = false;
 
   AppUser _appUser;
 
@@ -38,7 +35,8 @@ class UserDetailsProvider with ChangeNotifier {
   String get description => _description;
   String get descriptionError => _descriptionError;
 
-  bool get isValid => _isValid;
+  bool get isNameValid => _isNameValid;
+  bool get isDescValid => _isDescValid;
 
   AppUser get appUser => _appUser;
 
@@ -74,7 +72,7 @@ class UserDetailsProvider with ChangeNotifier {
   void navigateToRouteScreen(BuildContext context) {
     checkName();
     checkDescription();
-    if (_isValid) {
+    if (_isNameValid && _isDescValid) {
       _appUser = AppUser(
         secretCode: _appUser.secretCode,
         uid: _appUser.uid,
@@ -86,6 +84,7 @@ class UserDetailsProvider with ChangeNotifier {
         homeAddress: null,
         destinationAddress: null,
       );
+      setCurrentLocation();
       Navigator.of(context).pushNamed(RoutePickScreen.routeName);
     }
   }
@@ -95,13 +94,13 @@ class UserDetailsProvider with ChangeNotifier {
       print('Name has not changed');
       _name = _appUser.name;
       _nameError = null;
-      _isValid = true;
+      _isNameValid = true;
     } else if (_name.length < 3) {
       _nameError = 'Must be at least 3 charcters long';
-      _isValid = false;
+      _isNameValid = false;
     } else {
       _nameError = null;
-      _isValid = true;
+      _isNameValid = true;
     }
     notifyListeners();
   }
@@ -109,13 +108,13 @@ class UserDetailsProvider with ChangeNotifier {
   void checkDescription() {
     if (_description == null) {
       _descriptionError = 'Must be at least 10 characters long';
-      _isValid = false;
+      _isDescValid = false;
     } else if (_description.length < 10) {
       _descriptionError = 'Must be at least 10 characters long';
-      _isValid = false;
+      _isDescValid = false;
     } else {
       _descriptionError = null;
-      _isValid = true;
+      _isDescValid = true;
     }
     notifyListeners();
   }

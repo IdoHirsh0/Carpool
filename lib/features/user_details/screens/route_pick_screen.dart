@@ -16,8 +16,10 @@ class RoutePickScreen extends HookWidget {
     final userDetailsProvider = useProvider(globalUserDetailsProvider);
 
     return (userDetailsProvider.currentLocation == null)
-        ? Center(
-            child: CircularProgressIndicator(),
+        ? Scaffold(
+            body: Center(
+              child: CircularProgressIndicator(),
+            ),
           )
         : Stack(
             children: [
