@@ -4,7 +4,6 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 // Providers import
 import '../../../core/providers/providers.dart';
-
 import '../../../core/widgets/confirm_button.dart';
 import '../widgets/app_picture_and_name.dart';
 import '../widgets/secret_code_form.dart';

@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
+import '../../../core/models/app_user.dart';
 // Providers import
 import '../../../core/providers/providers.dart';
-import '../../../core/models/app_user.dart';
 
 class NameAndDescriptionForm extends HookWidget {
   const NameAndDescriptionForm({Key key}) : super(key: key);

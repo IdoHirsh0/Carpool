@@ -3,9 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import 'features/authentication/screens/auth_screen.dart';
-import 'features/route_pick/screens/route_pick_screen.dart';
 import 'features/secret_code/screens/secret_code_screen.dart';
 import 'features/user_details/screens/name_and_description_screen.dart';
+import 'features/user_details/screens/route_pick_screen.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();

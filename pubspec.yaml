@@ -16,6 +16,10 @@ dependencies:
   firebase_auth: ^0.20.1
   cloud_firestore: ^0.16.0+1
   google_sign_in: ^4.5.9
+  # Google maps
+  geolocator: ^6.2.1
+  google_maps_flutter: ^1.2.0
+  http: ^0.12.2
   # Provider
   hooks_riverpod: ^0.12.4
   flutter_hooks: ^0.15.0

@@ -67,6 +67,7 @@ class SecretCodeProvider with ChangeNotifier {
     }
   }
 
+  // TODO: Move navigation to ui
   void navigateToAuthScreen(BuildContext context) {
     if (_isValid) {
       Navigator.of(context).pushNamed(
